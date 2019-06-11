@@ -12,10 +12,11 @@ import org.jgrapht.graph.SimpleWeightedGraph;
 import it.polito.tdp.poweroutages.db.PowerOutagesDAO;
 
 public class Model {
-	SimpleWeightedGraph<Nerc, DefaultWeightedEdge> graph;
-	NercIdMap nIdMap;
-	
-	PowerOutagesDAO dao = new PowerOutagesDAO();
+	private SimpleWeightedGraph<Nerc, DefaultWeightedEdge> graph;
+	private NercIdMap nIdMap;
+	private Simulatore sim = new Simulatore();
+
+	private PowerOutagesDAO dao = new PowerOutagesDAO();
 	
 	public Model(){
 		nIdMap = new NercIdMap();
@@ -58,5 +59,12 @@ public class Model {
 		Collections.sort(correlatedNercs);
 		return correlatedNercs;
 	}
+	
+	public void simula(int k) {
+		sim.init(k, dao.loadAllPowerOutages(nIdMap), nIdMap, this.graph);
+		sim.run();
+	}
+	
+	
 
 }

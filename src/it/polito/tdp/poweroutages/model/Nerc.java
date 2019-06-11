@@ -3,10 +3,13 @@ package it.polito.tdp.poweroutages.model;
 public class Nerc {
 	private int id;
 	private String value;
+	//Aggiungiamo questo booleano che ci permette di sapere se il nerc sta prestando energia o no
+	private boolean staPrestando;
 
 	public Nerc(int id, String value) {
 		this.id = id;
 		this.value = value;
+		this.staPrestando=false;//di default non sta prestandp
 	}
 
 	public int getId() {
@@ -23,6 +26,14 @@ public class Nerc {
 
 	public void setValue(String value) {
 		this.value = value;
+	}
+
+	public boolean isStaPrestando() {
+		return staPrestando;
+	}
+
+	public void setStaPrestando(boolean staPrestando) {
+		this.staPrestando = staPrestando;
 	}
 
 	@Override
